@@ -1,0 +1,18 @@
+.root{
+  background-color: #fff;
+  height: 100%;
+  border-radius: 8px;
+}
+
+.root > div:first-child{
+  height: 40px;
+  padding: 10px;
+  border-radius: 8px 8px 0 0;
+  color: #141414;
+  font-weight: 500;
+}
+
+.root > div:last-child{
+  height: 100%;
+  padding: 10px;
+}
