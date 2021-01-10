@@ -1,8 +1,7 @@
 import React from 'react';
 
 import Home from './pages/Home';
-
-import 'antd/dist/antd.css';
+import './App.less';
 import './styles/global.css';
 
 function App() {
