@@ -5,6 +5,7 @@ import Header from '../../components/Header';
 import Board from '../../components/Board';
 
 import styles from './Home.module.css';
+import TicketModal from './components/TicketModal';
 
 export default function Home() {
   return (
@@ -34,6 +35,7 @@ export default function Home() {
           </Col>
         </Row>
       </div>
+      <TicketModal />
     </>
   );
 }

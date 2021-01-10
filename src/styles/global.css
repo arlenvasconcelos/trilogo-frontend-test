@@ -4,12 +4,11 @@
   box-sizing: border-box;
   outline: 0;
   font-family: 'Roboto', sans-serif;
-  font-size: 14px;
-
 }
 
 body {
   background: #E5E5E5;
+  font-size: 14px;
   -webkit-font-smoothing: antialiased;
 }
 
