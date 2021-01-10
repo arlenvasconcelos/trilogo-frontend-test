@@ -1,18 +1,28 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import styles from './Board.module.css';
+import { Card } from 'antd';
 
 export default function Board({ children, bgColor, title }) {
   return (
-    <div className={styles.root}>
-      <div style={{ backgroundColor: bgColor }}>
-        <span>{title}</span>
-      </div>
-      <div>
-        {children}
-      </div>
-    </div>
+    <Card
+      size="small"
+      title={title}
+      style={{
+        width: 300, borderRadius: ' 8px 8px 0 0', border: 0, height: '100%',
+      }}
+      headStyle={{
+        borderRadius: ' 8px 8px 0 0',
+        color: '#141414',
+        backgroundColor: bgColor,
+      }}
+      bodyStyle={{
+        overflowY: 'auto',
+        height: 'calc(100% - 40px)',
+      }}
+    >
+      {children}
+    </Card>
   );
 }
 

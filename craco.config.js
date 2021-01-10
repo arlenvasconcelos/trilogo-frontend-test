@@ -4,6 +4,9 @@ module.exports = {
   plugins: [
     {
       plugin: CracoLessPlugin,
+    },
+    {
+      plugin: CracoLessPlugin,
       options: {
         lessLoaderOptions: {
           lessOptions: {
