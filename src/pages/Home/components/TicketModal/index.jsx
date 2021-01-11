@@ -7,14 +7,16 @@ import {
 import { InboxOutlined } from '@ant-design/icons';
 
 import { addNewTicket, closeModal } from '../../../../store/modules/tickets/actions';
+import { users } from '../../../../database';
 
 import styles from './TicketModal.module.css';
 
 const { Option } = Select;
 
 const typeOptions = [
-  { value: 'oi', label: 'Oi' },
-  { value: 'ola', label: 'olá' },
+  { value: 'Bem', label: 'Bem' },
+  { value: 'Predial', label: 'Predial' },
+  { value: 'Procedimento', label: 'Procedimento' },
 ];
 
 export default function TicketModal() {
@@ -73,8 +75,8 @@ export default function TicketModal() {
           </Form.Item>
           <Form.Item name="manage" label="Responsável" required>
             <Select>
-              {typeOptions.map((item) => (
-                <Option key={item.value} value={item.value}>{item.label}</Option>
+              {users.map((item) => (
+                <Option key={item.id} value={item.name}>{item.name}</Option>
               ))}
             </Select>
           </Form.Item>
