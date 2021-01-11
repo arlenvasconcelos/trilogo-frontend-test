@@ -31,9 +31,9 @@ export default function Ticket() {
         />
         <Text strong>6532</Text>
         <Text type="secondary">Consertar o vazamento</Text>
-        <Space size={110} style={{ marginTop: '15px' }}>
+        <Space size={85} style={{ marginTop: '15px' }}>
           <Text>Yudi Tamashiro</Text>
-          <Button type="text">
+          <Button type="text" style={{ fontSize: '20px' }}>
             <EllipsisOutlined />
           </Button>
         </Space>
