@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import {
   Modal, Button, Form, Input, Select, Upload,
 } from 'antd';
 
 import { InboxOutlined } from '@ant-design/icons';
+
+import { addNewTicket, closeModal } from '../../../../store/modules/tickets/actions';
 
 import styles from './TicketModal.module.css';
 
@@ -15,23 +18,19 @@ const typeOptions = [
 ];
 
 export default function TicketModal() {
+  const dispatch = useDispatch();
   const [form] = Form.useForm();
 
-  const [loading, setLoading] = useState(false);
-  const [visible, setVisible] = useState(true);
+  const { openTicketModal } = useSelector((state) => state.tickets);
+
   const [requiredMark, setRequiredMarkType] = useState('required');
 
   const onRequiredTypeChange = ({ reqMark }) => {
     setRequiredMarkType(reqMark);
   };
 
-  const handleOk = () => {
-    setVisible(false);
-    setLoading(true);
-  };
-
   const handleCancel = () => {
-    setVisible(false);
+    dispatch(closeModal());
   };
 
   const normFile = (e) => {
@@ -42,31 +41,25 @@ export default function TicketModal() {
     return e && e.fileList;
   };
 
-  const onFieldsChange = (e) => {
-    console.log(e);
-  };
-
   const onFinish = (values) => {
-    console.log('Received values of form: ', values);
+    dispatch(addNewTicket({ ticket: { ...values, status: 'opened' } }));
+    dispatch(closeModal());
   };
 
   return (
     <>
       <Modal
-        visible={visible}
+        visible={openTicketModal}
         title="Novo Ticket"
-        onOk={handleOk}
         onCancel={handleCancel}
         footer={null}
       >
         <Form
-          onFieldsChange={onFieldsChange}
           form={form}
           layout="vertical"
           initialValues={{ requiredMark }}
           onValuesChange={onRequiredTypeChange}
           onFinish={onFinish}
-          // requiredMark={requiredMark}
         >
           <Form.Item name="description" label="Descrição" required>
             <Input />
@@ -91,13 +84,12 @@ export default function TicketModal() {
                 <p className="ant-upload-drag-icon" style={{ fontSize: '39px' }}>
                   <InboxOutlined />
                 </p>
-                {/* <p className="ant-upload-text">Click or drag file to this area to upload</p> */}
                 <p className="ant-upload-hint">Arraste uma imagem para anexar ao ticket</p>
               </Upload.Dragger>
             </Form.Item>
           </Form.Item>
           <div className={styles.submitBtnWrapper}>
-            <Button shape="round" type="primary" loading={loading} onClick={handleOk}>
+            <Button shape="round" type="primary" htmlType="submit">
               Criar ticket
             </Button>
           </div>
