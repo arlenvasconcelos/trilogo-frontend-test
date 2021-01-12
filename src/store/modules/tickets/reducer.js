@@ -24,6 +24,7 @@ export default function tickets(state = initialState, action) {
         allTickets: [...state.allTickets, {
           ...action.payload.ticket,
           id: uuid(),
+          code: Math.floor(Math.random() * 10000),
         }],
       };
     case TYPES.REMOVE:
