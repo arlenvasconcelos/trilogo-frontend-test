@@ -26,7 +26,11 @@ export default function HeaderComponent() {
           Novo ticket
         </Button>
       </header>
-      <TicketModal visible={showModal} handleCancel={() => setShowModal(false)} />
+      <TicketModal
+        visible={showModal}
+        handleCancel={() => setShowModal(false)}
+        isUpdating={false}
+      />
     </>
   );
 }

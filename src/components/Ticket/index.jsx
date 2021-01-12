@@ -62,14 +62,17 @@ export default function Ticket({ ticket }) {
           />
           <Text strong>{ticket.code }</Text>
           <Text type="secondary">{ticket.description}</Text>
-          <Space size={85} style={{ marginTop: '15px' }}>
+          <div style={{
+            marginTop: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+          }}
+          >
             <Text>{ticket.manage}</Text>
             <Dropdown overlay={menu} placement="bottomRight" arrow>
               <Button type="text" style={{ fontSize: '20px' }}>
                 <EllipsisOutlined />
               </Button>
             </Dropdown>
-          </Space>
+          </div>
 
         </Space>
       </Card>

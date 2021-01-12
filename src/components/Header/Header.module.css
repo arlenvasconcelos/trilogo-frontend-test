@@ -8,3 +8,11 @@
 .root > img{
   max-height: 32px;
 }
+
+@media (max-width: 600px)
+{
+  .root
+   {
+    padding: 16px;
+   }
+}

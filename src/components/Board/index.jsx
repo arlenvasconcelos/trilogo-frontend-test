@@ -3,16 +3,16 @@ import PropTypes from 'prop-types';
 
 import { Card } from 'antd';
 
+import styles from './Board.module.css';
+
 export default function Board({ children, bgColor, title }) {
   return (
     <Card
       size="small"
       title={title}
-      style={{
-        width: 300, borderRadius: ' 8px 8px 0 0', border: 0, height: '100%',
-      }}
+      className={styles.root}
       headStyle={{
-        borderRadius: ' 8px 8px 0 0',
+        borderRadius: '8px 8px 0 0',
         color: '#141414',
         backgroundColor: bgColor,
       }}
