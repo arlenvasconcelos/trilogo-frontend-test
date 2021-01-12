@@ -42,16 +42,6 @@ export default function tickets(state = initialState, action) {
           return t;
         }),
       };
-    case TYPES.OPEN_MODAL:
-      return {
-        ...state,
-        openTicketModal: true,
-      };
-    case TYPES.CLOSE_MODAL:
-      return {
-        ...state,
-        openTicketModal: false,
-      };
     default:
       return state;
   }

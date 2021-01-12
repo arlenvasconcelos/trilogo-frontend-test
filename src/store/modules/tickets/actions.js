@@ -12,19 +12,8 @@ const updateTicket = ({ ticket }) => ({
   type: TYPES.UPDATE,
   payload: { ticket },
 });
-
-// Modal
-const openModal = () => ({
-  type: TYPES.OPEN_MODAL,
-});
-const closeModal = () => ({
-  type: TYPES.CLOSE_MODAL,
-});
-
 export {
   addNewTicket,
   removeTicket,
   updateTicket,
-  openModal,
-  closeModal,
 };
