@@ -4,16 +4,12 @@ export const TYPES = {
   ADD: 'ticket/ADD',
   REMOVE: 'ticket/REMOVE',
   UPDATE: 'ticket/UPDATE',
-  OPEN_MODAL: 'ticket/OPEN_MODAL',
-  CLOSE_MODAL: 'ticket/CLOSE_MODAL',
 };
 
 // Reducer
 
 const initialState = {
   allTickets: [],
-  openTicketModal: false,
-  error: null,
 };
 
 export default function tickets(state = initialState, action) {
