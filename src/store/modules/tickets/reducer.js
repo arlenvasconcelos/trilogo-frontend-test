@@ -1,3 +1,5 @@
+import { uuid } from 'uuidv4';
+
 export const TYPES = {
   ADD: 'ticket/ADD',
   REMOVE: 'ticket/REMOVE',
@@ -19,7 +21,10 @@ export default function tickets(state = initialState, action) {
     case TYPES.ADD:
       return {
         ...state,
-        allTickets: [...state.allTickets, action.payload.ticket],
+        allTickets: [...state.allTickets, {
+          ...action.payload.ticket,
+          id: uuid(),
+        }],
       };
     case TYPES.REMOVE:
       return {
