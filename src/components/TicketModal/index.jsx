@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
+import { useDispatch } from 'react-redux';
 import {
   Modal, Button, Form, Input, Select, Upload,
 } from 'antd';
 
 import { InboxOutlined } from '@ant-design/icons';
 
-import { addNewTicket, closeModal } from '../../../../store/modules/tickets/actions';
-import { users } from '../../../../database';
+import { addNewTicket, updateTicket } from '../../store/modules/tickets/actions';
+import { users } from '../../database';
 
 import styles from './TicketModal.module.css';
 
@@ -19,20 +20,23 @@ const typeOptions = [
   { value: 'Procedimento', label: 'Procedimento' },
 ];
 
-export default function TicketModal() {
+const statusOptions = [
+  { value: 'opened', label: 'Aberto' },
+  { value: 'done', label: 'Executado' },
+  { value: 'inspected', label: 'Inspecionado' },
+  { value: 'filed', label: 'Arquivado' },
+];
+
+export default function TicketModal({
+  isUpdating, selectedTicket, visible, handleCancel,
+}) {
   const dispatch = useDispatch();
   const [form] = Form.useForm();
-
-  const { openTicketModal } = useSelector((state) => state.tickets);
 
   const [requiredMark, setRequiredMarkType] = useState('required');
 
   const onRequiredTypeChange = ({ reqMark }) => {
     setRequiredMarkType(reqMark);
-  };
-
-  const handleCancel = () => {
-    dispatch(closeModal());
   };
 
   const normFile = (e) => {
@@ -42,18 +46,33 @@ export default function TicketModal() {
     }
     return e && e.fileList;
   };
+  const handleCloseModal = () => {
+    form.resetFields();
+    handleCancel();
+  };
 
   const onFinish = (values) => {
-    dispatch(addNewTicket({ ticket: { ...values, status: 'opened' } }));
-    dispatch(closeModal());
+    if (isUpdating) {
+      dispatch(updateTicket({ ticket: { ...values, id: selectedTicket.id } }));
+    } else {
+      dispatch(addNewTicket({ ticket: { ...values, status: 'opened' } }));
+    }
+    handleCloseModal();
   };
+
+  // Effects
+  useEffect(() => {
+    if (isUpdating) {
+      form.setFieldsValue(selectedTicket);
+    }
+  }, [isUpdating, form, selectedTicket]);
 
   return (
     <>
       <Modal
-        visible={openTicketModal}
-        title="Novo Ticket"
-        onCancel={handleCancel}
+        visible={visible}
+        title={isUpdating ? 'Atualizar Ticket' : 'Novo Ticket'}
+        onCancel={handleCloseModal}
         footer={null}
       >
         <Form
@@ -80,6 +99,15 @@ export default function TicketModal() {
               ))}
             </Select>
           </Form.Item>
+          {isUpdating && (
+            <Form.Item name="status" label="Status" required>
+              <Select>
+                {statusOptions.map((item) => (
+                  <Option key={item.id} value={item.value}>{item.label}</Option>
+                ))}
+              </Select>
+            </Form.Item>
+          )}
           <Form.Item label="Imagem">
             <Form.Item name="image" valuePropName="fileList" getValueFromEvent={normFile} noStyle>
               <Upload.Dragger name="files" action="/upload.do">
@@ -92,7 +120,7 @@ export default function TicketModal() {
           </Form.Item>
           <div className={styles.submitBtnWrapper}>
             <Button shape="round" type="primary" htmlType="submit">
-              Criar ticket
+              {isUpdating ? 'Atualizar Ticket' : 'Criar ticket'}
             </Button>
           </div>
         </Form>
@@ -100,3 +128,20 @@ export default function TicketModal() {
     </>
   );
 }
+
+TicketModal.propTypes = {
+  isUpdating: PropTypes.bool.isRequired,
+  selectedTicket: PropTypes.shape({
+    id: PropTypes.string,
+    description: PropTypes.string,
+    type: PropTypes.string,
+    manage: PropTypes.string,
+    image: PropTypes.string,
+  }),
+  visible: PropTypes.bool.isRequired,
+  handleCancel: PropTypes.func.isRequired,
+};
+
+TicketModal.defaultProps = {
+  selectedTicket: null,
+};

@@ -6,7 +6,6 @@ import Header from '../../components/Header';
 import Board from '../../components/Board';
 
 import styles from './Home.module.css';
-import TicketModal from './components/TicketModal';
 import Ticket from '../../components/Ticket';
 
 export default function Home() {
@@ -75,7 +74,6 @@ export default function Home() {
           </Col>
         </Row>
       </div>
-      <TicketModal />
     </>
   );
 }

@@ -1,29 +1,32 @@
-import React from 'react';
-import { useDispatch } from 'react-redux';
+import React, { useState } from 'react';
 
 import { Button } from 'antd';
 
 import { PlusOutlined } from '@ant-design/icons';
 
+import TicketModal from '../TicketModal';
+
 import styles from './Header.module.css';
 import logo from '../../assets/logo.png';
-import { openModal } from '../../store/modules/tickets/actions';
 
 // const { Header } = Layout;
 
 export default function HeaderComponent() {
-  const dispatch = useDispatch();
+  const [showModal, setShowModal] = useState(false);
 
   const handleAddTicket = () => {
-    dispatch(openModal());
+    setShowModal(true);
   };
 
   return (
-    <header className={styles.root}>
-      <img src={logo} alt="Trílogo" />
-      <Button type="primary" icon={<PlusOutlined />} size={10} shape="round" onClick={handleAddTicket}>
-        Novo ticket
-      </Button>
-    </header>
+    <>
+      <header className={styles.root}>
+        <img src={logo} alt="Trílogo" />
+        <Button type="primary" icon={<PlusOutlined />} size={10} shape="round" onClick={handleAddTicket}>
+          Novo ticket
+        </Button>
+      </header>
+      <TicketModal visible={showModal} handleCancel={() => setShowModal(false)} />
+    </>
   );
 }
