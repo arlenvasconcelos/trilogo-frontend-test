@@ -60,6 +60,15 @@ export default function TicketModal({
     handleCloseModal();
   };
 
+  const onCheck = async () => {
+    try {
+      const values = await form.validateFields();
+      onFinish(values);
+    } catch (errorInfo) {
+      console.log('Failed:', errorInfo);
+    }
+  };
+
   // Effects
   useEffect(() => {
     if (isUpdating) {
@@ -80,19 +89,46 @@ export default function TicketModal({
           layout="vertical"
           initialValues={{ requiredMark }}
           onValuesChange={onRequiredTypeChange}
-          onFinish={onFinish}
+          // onFinish={onFinish}
         >
-          <Form.Item name="description" label="Descrição" required>
+          <Form.Item
+            name="description"
+            label="Descrição"
+            rules={[
+              {
+                required: true,
+                message: 'Este campo é obrigatório',
+              },
+            ]}
+          >
             <Input />
           </Form.Item>
-          <Form.Item name="type" label="Tipo" required>
+          <Form.Item
+            name="type"
+            label="Tipo"
+            rules={[
+              {
+                required: true,
+                message: 'Este campo é obrigatório',
+              },
+            ]}
+          >
             <Select>
               {typeOptions.map((item) => (
                 <Option key={item.value} value={item.value}>{item.label}</Option>
               ))}
             </Select>
           </Form.Item>
-          <Form.Item name="manage" label="Responsável" required>
+          <Form.Item
+            name="manage"
+            label="Responsável"
+            rules={[
+              {
+                required: true,
+                message: 'Este campo é obrigatório',
+              },
+            ]}
+          >
             <Select>
               {users.map((item) => (
                 <Option key={item.id} value={item.name}>{item.name}</Option>
@@ -100,7 +136,16 @@ export default function TicketModal({
             </Select>
           </Form.Item>
           {isUpdating && (
-            <Form.Item name="status" label="Status" required>
+            <Form.Item
+              name="status"
+              label="Status"
+              rules={[
+                {
+                  required: true,
+                  message: 'Este campo é obrigatório',
+                },
+              ]}
+            >
               <Select>
                 {statusOptions.map((item) => (
                   <Option key={item.id} value={item.value}>{item.label}</Option>
@@ -119,7 +164,7 @@ export default function TicketModal({
             </Form.Item>
           </Form.Item>
           <div className={styles.submitBtnWrapper}>
-            <Button shape="round" type="primary" htmlType="submit">
+            <Button shape="round" type="primary" onClick={onCheck}>
               {isUpdating ? 'Atualizar Ticket' : 'Criar ticket'}
             </Button>
           </div>
