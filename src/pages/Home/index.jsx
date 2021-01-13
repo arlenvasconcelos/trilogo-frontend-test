@@ -22,7 +22,7 @@ export default function Home() {
         <Row gutter={[16, 16]} style={{ height: '100%' }}>
           <Col xs={24} sm={12} md={6} lg={6} className={styles.boardWrapper}>
             <Board title="Abertos" bgColor="rgba(245, 34, 45, 0.25)">
-              <Space direction="vertical" data-testid="opened-ticket-list">
+              <Space direction="vertical" data-testid="opened-ticket-list" style={{ width: '100%' }}>
                 {
                   allTickets.filter((ticket) => ticket.status === 'opened').map((ticket) => (
                     <Ticket key={ticket.id} ticket={ticket} />
@@ -44,7 +44,7 @@ export default function Home() {
           </Col>
           <Col xs={24} sm={12} md={6} lg={6} className={styles.boardWrapper}>
             <Board title="Vistoriados" bgColor="rgba(82, 196, 26, 0.25)">
-              <Space direction="vertical" data-testid="inspected-ticket-list">
+              <Space direction="vertical" data-testid="inspected-ticket-list" style={{ width: '100%' }}>
                 {
                   allTickets.filter((ticket) => ticket.status === 'inspected').map((ticket) => (
                     <Ticket key={ticket.id} ticket={ticket} />
@@ -55,7 +55,7 @@ export default function Home() {
           </Col>
           <Col xs={24} sm={12} md={6} lg={6} className={styles.boardWrapper}>
             <Board title="Arquivados" bgColor="rgba(193, 185, 185, 0.25)">
-              <Space direction="vertical" data-testid="filed-ticket-list">
+              <Space direction="vertical" data-testid="filed-ticket-list" style={{ width: '100%' }}>
                 {
                   allTickets.filter((ticket) => ticket.status === 'filed').map((ticket) => (
                     <Ticket key={ticket.id} ticket={ticket} />
