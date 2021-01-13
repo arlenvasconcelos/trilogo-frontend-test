@@ -40,7 +40,7 @@ export default function TicketModal({
   };
 
   const normFile = (e) => {
-    console.log('Upload event:', e);
+    // console.log('Upload event:', e);
     form.setFieldsValue([{
     }]);
     if (Array.isArray(e)) {
@@ -71,7 +71,7 @@ export default function TicketModal({
       }
       onFinish(values);
     } catch (errorInfo) {
-      console.log('Failed:', errorInfo);
+      // console.log('Failed:', errorInfo);
     }
   };
 
