@@ -58,7 +58,6 @@ export default function TicketModal({
     if (isUpdating) {
       dispatch(updateTicket({ ticket: { ...values, id: selectedTicket.id } }));
     } else {
-      console.log(values);
       dispatch(addNewTicket({ ticket: { ...values, status: 'opened' } }));
     }
     handleCloseModal();
