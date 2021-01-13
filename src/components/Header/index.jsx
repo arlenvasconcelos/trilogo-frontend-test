@@ -1,15 +1,12 @@
 import React, { useState } from 'react';
 
 import { Button } from 'antd';
-
 import { PlusOutlined } from '@ant-design/icons';
 
 import TicketModal from '../TicketModal';
 
 import styles from './Header.module.css';
 import logo from '../../assets/logo.png';
-
-// const { Header } = Layout;
 
 export default function HeaderComponent() {
   const [showModal, setShowModal] = useState(false);
@@ -22,7 +19,14 @@ export default function HeaderComponent() {
     <>
       <header className={styles.root}>
         <img src={logo} alt="Trílogo" />
-        <Button type="primary" icon={<PlusOutlined />} size={10} shape="round" onClick={handleAddTicket}>
+        <Button
+          type="primary"
+          icon={<PlusOutlined />}
+          size={10}
+          shape="round"
+          onClick={handleAddTicket}
+          data-testid="button-new-ticket"
+        >
           Novo ticket
         </Button>
       </header>

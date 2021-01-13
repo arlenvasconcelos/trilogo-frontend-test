@@ -79,6 +79,7 @@ export default function TicketModal({
   return (
     <>
       <Modal
+        data-testid="ticket-modal"
         visible={visible}
         title={isUpdating ? 'Atualizar Ticket' : 'Novo Ticket'}
         onCancel={handleCloseModal}
@@ -120,7 +121,7 @@ export default function TicketModal({
             </Select>
           </Form.Item>
           <Form.Item
-            name="manage"
+            name="manager"
             label="Responsável"
             rules={[
               {
@@ -148,7 +149,7 @@ export default function TicketModal({
             >
               <Select>
                 {statusOptions.map((item) => (
-                  <Option key={item.id} value={item.value}>{item.label}</Option>
+                  <Option key={item.value} value={item.value}>{item.label}</Option>
                 ))}
               </Select>
             </Form.Item>
@@ -180,7 +181,7 @@ TicketModal.propTypes = {
     id: PropTypes.string,
     description: PropTypes.string,
     type: PropTypes.string,
-    manage: PropTypes.string,
+    manager: PropTypes.string,
     image: PropTypes.string,
   }),
   visible: PropTypes.bool.isRequired,

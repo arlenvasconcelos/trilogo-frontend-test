@@ -5,12 +5,12 @@ import {
   Badge, Card, Typography, Space, Button, Image,
   Menu, Dropdown,
 } from 'antd';
-
 import { EllipsisOutlined } from '@ant-design/icons';
-import TicketModal from '../TicketModal';
-import styles from './Ticket.module.css';
 
+import TicketModal from '../TicketModal';
 import { removeTicket } from '../../store/modules/tickets/actions';
+
+import styles from './Ticket.module.css';
 
 const { Text } = Typography;
 
@@ -66,7 +66,7 @@ export default function Ticket({ ticket }) {
             marginTop: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
           }}
           >
-            <Text>{ticket.manage}</Text>
+            <Text>{ticket.manager}</Text>
             <Dropdown overlay={menu} placement="bottomRight" arrow>
               <Button type="text" style={{ fontSize: '20px' }}>
                 <EllipsisOutlined />
@@ -91,7 +91,7 @@ Ticket.propTypes = {
     id: PropTypes.string,
     description: PropTypes.string,
     type: PropTypes.string,
-    manage: PropTypes.string,
+    manager: PropTypes.string,
     image: PropTypes.string,
     status: PropTypes.string,
     code: PropTypes.number,
