@@ -66,7 +66,7 @@ export default function Ticket({ ticket }) {
               color: '#1F1F49',
             }}
           />
-          <Text strong>{ticket.code }</Text>
+          <Text strong>{ticket.code}</Text>
           <Text type="secondary">{ticket.description}</Text>
           <div className={styles.wrapperFooterCard}>
             <Text>{ticket.manager}</Text>

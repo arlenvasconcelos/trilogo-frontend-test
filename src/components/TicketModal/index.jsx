@@ -56,7 +56,13 @@ export default function TicketModal({
 
   const onFinish = (values) => {
     if (isUpdating) {
-      dispatch(updateTicket({ ticket: { ...values, id: selectedTicket.id } }));
+      dispatch(updateTicket({
+        ticket: {
+          ...values,
+          id: selectedTicket.id,
+          code: selectedTicket.code,
+        },
+      }));
     } else {
       dispatch(addNewTicket({ ticket: { ...values, status: 'opened' } }));
     }
@@ -186,6 +192,7 @@ TicketModal.propTypes = {
     id: PropTypes.string,
     description: PropTypes.string,
     type: PropTypes.string,
+    code: PropTypes.number,
     manager: PropTypes.string,
     image: PropTypes.string,
   }),
