@@ -46,6 +46,7 @@ export default function TicketModal({
     }
     return e && e.fileList;
   };
+
   const handleCloseModal = () => {
     form.resetFields();
     handleCancel();
@@ -102,7 +103,7 @@ export default function TicketModal({
               },
             ]}
           >
-            <Input />
+            <Input data-testid="description-input" />
           </Form.Item>
           <Form.Item
             name="type"
@@ -166,7 +167,7 @@ export default function TicketModal({
           </Form.Item>
           <div className={styles.submitBtnWrapper}>
             <Button shape="round" type="primary" onClick={onCheck}>
-              {isUpdating ? 'Atualizar Ticket' : 'Criar ticket'}
+              {isUpdating ? 'Atualizar ticket' : 'Criar ticket'}
             </Button>
           </div>
         </Form>
