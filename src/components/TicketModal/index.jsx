@@ -41,6 +41,8 @@ export default function TicketModal({
 
   const normFile = (e) => {
     console.log('Upload event:', e);
+    form.setFieldsValue([{
+    }]);
     if (Array.isArray(e)) {
       return e;
     }
@@ -56,6 +58,7 @@ export default function TicketModal({
     if (isUpdating) {
       dispatch(updateTicket({ ticket: { ...values, id: selectedTicket.id } }));
     } else {
+      console.log(values);
       dispatch(addNewTicket({ ticket: { ...values, status: 'opened' } }));
     }
     handleCloseModal();
@@ -64,6 +67,9 @@ export default function TicketModal({
   const onCheck = async () => {
     try {
       const values = await form.validateFields();
+      if (values.image) {
+        values.image = 'https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png';
+      }
       onFinish(values);
     } catch (errorInfo) {
       console.log('Failed:', errorInfo);
@@ -91,7 +97,6 @@ export default function TicketModal({
           layout="vertical"
           initialValues={{ requiredMark }}
           onValuesChange={onRequiredTypeChange}
-          // onFinish={onFinish}
         >
           <Form.Item
             name="description"

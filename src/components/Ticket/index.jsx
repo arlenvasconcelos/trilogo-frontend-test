@@ -43,16 +43,22 @@ export default function Ticket({ ticket }) {
   return (
     <>
       <Card size="small">
-        <Space direction="vertical">
-          <Image
-            width="100%"
-            height="104px"
-            style={{
-              objectFit: 'cover',
-            }}
-            src="https://zos.alipayobjects.com/rmsportal/jkjgkEfvpUPVyRjUImniVslZfWPnJuuZ.png"
-            preview={false}
-          />
+        <Space direction="vertical" style={{ width: '100%' }}>
+          {
+            !!ticket.image && (
+              <Image
+                width="100%"
+                height="104px"
+                style={{
+                  objectFit: 'cover',
+                }}
+                src={ticket.image}
+                preview={false}
+              />
+
+            )
+
+          }
           <Badge
             count={ticket.type}
             style={{
@@ -62,10 +68,7 @@ export default function Ticket({ ticket }) {
           />
           <Text strong>{ticket.code }</Text>
           <Text type="secondary">{ticket.description}</Text>
-          <div style={{
-            marginTop: '15px', display: 'flex', justifyContent: 'space-between', alignItems: 'center',
-          }}
-          >
+          <div className={styles.wrapperFooterCard}>
             <Text>{ticket.manager}</Text>
             <Dropdown overlay={menu} placement="bottomRight" arrow>
               <Button type="text" style={{ fontSize: '20px' }}>

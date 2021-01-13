@@ -4,3 +4,11 @@
   font-size: inherit;
   font-weight: inherit;
 }
+
+.wrapperFooterCard{
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}

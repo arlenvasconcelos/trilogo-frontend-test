@@ -33,7 +33,7 @@ export default function Home() {
           </Col>
           <Col xs={24} sm={12} md={6} lg={6} className={styles.boardWrapper}>
             <Board title="Executados" bgColor="rgba(212, 102, 45,0.25)">
-              <Space direction="vertical" data-testid="done-ticket-list">
+              <Space direction="vertical" data-testid="done-ticket-list" style={{ width: '100%' }}>
                 {
                   allTickets.filter((ticket) => ticket.status === 'done').map((ticket) => (
                     <Ticket key={ticket.id} ticket={ticket} />
