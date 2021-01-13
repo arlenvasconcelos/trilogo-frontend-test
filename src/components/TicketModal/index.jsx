@@ -86,7 +86,7 @@ export default function TicketModal({
     if (isUpdating) {
       form.setFieldsValue(selectedTicket);
     }
-  });
+  }, [isUpdating, visible, form, selectedTicket]);
 
   return (
     <>

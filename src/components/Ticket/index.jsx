@@ -70,7 +70,7 @@ export default function Ticket({ ticket }) {
           <Text type="secondary">{ticket.description}</Text>
           <div className={styles.wrapperFooterCard}>
             <Text>{ticket.manager}</Text>
-            <Dropdown overlay={menu} placement="bottomRight" arrow>
+            <Dropdown overlay={menu} placement="bottomRight" arrow trigger={['click']}>
               <Button type="text" style={{ fontSize: '20px' }}>
                 <EllipsisOutlined />
               </Button>
