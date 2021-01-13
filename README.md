@@ -1,3 +1,5 @@
+# Demo #
+Link para demo: https://trilogoteste.netlify.app/
 # Desafio Front-End #
 
 Nesse desafio, a tarefa é implementar um CRUD de Tickets, sendo listados e gerenciados em um quadro (Kanban).
